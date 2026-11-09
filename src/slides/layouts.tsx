@@ -49,6 +49,7 @@ function Cover({ s, index, total }: { s: CoverSlide } & Pos) {
         <Rich text={s.standfirst ?? ""} />
       </p>
 
+      {s.contrast && s.recommendation ? (
       <div className="mt-auto grid grid-cols-[1fr_1fr_1.15fr] gap-[48px] items-stretch">
         {s.contrast.map((c, i) => (
           <div key={c.label} className={`border-t-[4px] pt-5 ${i === 0 ? "border-london-5" : "border-london-70"}`}>
@@ -70,8 +71,23 @@ function Cover({ s, index, total }: { s: CoverSlide } & Pos) {
           <p className="text-[27px] leading-[1.38] text-london-10 mt-4">
             <Rich text={s.recommendation} />
           </p>
+          {s.principles && (
+            <ol className="mt-3 space-y-2">
+              {s.principles.map((p, i) => (
+                <li key={i} className="flex gap-3 text-[21px] leading-[1.35] text-london-20">
+                  <span className="font-serif text-econ-red">{i + 1}</span>
+                  <span>
+                    <Rich text={p} />
+                  </span>
+                </li>
+              ))}
+            </ol>
+          )}
         </div>
       </div>
+      ) : (
+        <div className="mt-auto" />
+      )}
 
       <p className="text-[22px] text-london-35 mt-10">
         <Rich text={s.presenter} />

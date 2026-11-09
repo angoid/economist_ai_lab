@@ -25,8 +25,11 @@ interface Base {
 export interface CoverSlide extends Base {
   layout: "cover";
   presenter: string;
-  contrast: { label: string; heading: string; text: string }[];
-  recommendation: string;
+  /** Optional: omit both for a plain title slide. */
+  contrast?: { label: string; heading: string; text: string }[];
+  recommendation?: string;
+  /** Optional short principles listed under the recommendation. */
+  principles?: string[];
 }
 
 export interface JobsSlide extends Base {

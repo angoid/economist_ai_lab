@@ -3,9 +3,9 @@ import type { Slide } from "./types";
 /**
  * ALL SLIDE CONTENT LIVES HERE.
  *
- * Holding text: draft copy for iteration. Anything in [square brackets] renders
- * as a yellow placeholder: a fact, source or internal detail still to confirm.
- * Use **double asterisks** for emphasis.
+ * v2 narrative: question → evidence → tension → answer → how we'd prove it
+ * → how we'd build it → beyond → recommendation.
+ * [Square brackets] render as yellow placeholders. **Double asterisks** = emphasis.
  */
 
 export const deck = {
@@ -14,382 +14,342 @@ export const deck = {
 };
 
 export const slides: Slide[] = [
-  // 1 ─────────────────────────────────────────────────────────────────────────
+  // 1 ── Title ───────────────────────────────────────────────────────────────
   {
-    id: "cover",
+    id: "title",
     layout: "cover",
     kicker: "AI Lab case study",
     title: "Meet the Editors",
-    standfirst:
-      "What if our subscribers could talk to virtual versions of The Economist’s editors by text, voice or video, in real time, about the stories they cover?",
-    presenter: "Angus Keith · 10/11/2026",
-    status: "recommendation",
-    contrast: [
+    standfirst: "A new conversational experience for The Economist",
+    presenter: "Angus Keith · 10 November 2026",
+    notes: ["Welcome. Twenty minutes, then questions."],
+  },
+
+  // 2 ── The brief, and my approach ──────────────────────────────────────────
+  {
+    id: "brief",
+    layout: "columns",
+    kicker: "The brief",
+    title: "What if subscribers could talk to our editors?",
+    standfirst: "By text, voice or video, in real time, about the stories they cover.",
+    columns: [
       {
-        label: "The opportunity",
-        heading: "Make Economist expertise more interactive",
-        text: "Help subscribers question, explore and follow the reasoning behind the journalism.",
+        title: "The concept",
+        items: [
+          "Virtual versions of named editors",
+          "Personas: sceptical, optimistic, provocative",
+          "Adapting to the reader's expertise",
+          "Group discussions, with each other or with readers' agents",
+        ],
       },
       {
-        label: "The proposed implementation",
-        heading: "Synthetic avatars of named editors",
-        text: "Text, voice and video representations of real journalists. Demand is unproven and the editorial risk is real.",
+        title: "How I treated it",
+        items: ["As a hypothesis, not a plan", "Started from the reader, not the technology", "Tested it against the evidence and house policy"],
+      },
+      {
+        title: "Where I focused",
+        items: ["**Deep:** who it's for, editorial risk, validation", "**Light:** delivery plan and stack, which depend on what's already in place"],
       },
     ],
-    recommendation:
-      "A focused, time-boxed exploration. Avatars stay possible, but they have to **earn their place through evidence**.",
     notes: [
-      "Separate the opportunity from the implementation early. I'm enthusiastic about the first and sceptical about starting with the second.",
-      "This is provisional: a few hours of outside-in research, explicitly subject to internal discovery.",
-      "Three things to leave with: the vision, what I'd test first, and what would make me invest, change course or stop.",
+      "Quick recap so we share the starting point.",
+      "The brief invites us to narrow, reshape or recommend against. I'll show how I got to an answer, not just the answer.",
+      "I've gone light on delivery planning deliberately: it depends on capacity and existing work I'd learn about in week one.",
     ],
   },
 
-  // 2 ─────────────────────────────────────────────────────────────────────────
+  // 3 ── Who and why ─────────────────────────────────────────────────────────
   {
-    id: "problem",
+    id: "who",
     layout: "jobs",
-    kicker: "The subscriber problem",
-    title: "What would subscribers hire this for?",
-    standfirst: "Four candidate jobs. Each one is a hypothesis to test, not a finding.",
+    kicker: "The reader",
+    title: "Who would use this, and why?",
     status: "hypothesis",
     jobs: [
-      { title: "Understand", text: "Make sense of a complex development quickly, at the depth I choose." },
-      { title: "Challenge", text: "Test an argument. Ask what would have to be true for it to be wrong." },
-      { title: "Access reasoning", text: "Get to an editor's published reasoning and the evidence behind it." },
-      { title: "Follow", text: "Track a developing story and see what has changed since I last read." },
+      {
+        title: "Engaged subscribers",
+        text: "Already follow editors: **75%** engage with Insider. News lovers are also the heaviest AI news users. **Primary.**",
+      },
+      {
+        title: "Professionals at work",
+        text: "Prepping meetings and reports; want an expert view. The Ask FT pattern.",
+      },
+      {
+        title: "Younger readers",
+        text: "Under-35s use AI for news most, and are most comfortable with it. An acquisition route, later.",
+      },
     ],
     example: {
-      label: "Illustrative example",
-      title: "A subscriber reading Henry Curr's analysis of the AI investment boom",
+      label: "Why",
+      title: "Three different needs",
       steps: [
-        "Asks: “What would turn this boom into a bust?”",
-        "Gets an answer grounded in published pieces, with citations and dates",
-        "Follows up: “What has changed since this was written?”",
-        "Chooses to be told when the argument moves",
+        "**Dig deeper:** explain, follow up. The top use of AI for news. Any good Q&A tool can do this.",
+        "**Know where The Economist stands:** our published view, summarised and cited.",
+        "**Hear from a specific editor:** the reason to “meet the editors”, and the one readers want **from the person**.",
       ],
     },
-    caveat: "Hypotheses about subscriber needs. [Validate against internal research and subscriber interviews.]",
+    caveat: "Segments are hypotheses to sharpen with the Lab's own data.",
     notes: [
-      "Start with the job rather than the technology. Subscribers don't want an avatar, they want to understand something.",
-      "Walk through the AI-boom example. Note it uses only published work, and the editor's view stays theirs.",
-      "Ask the room which of these jobs existing research already supports. [Insert any internal evidence I learn about.]",
+      "1.3m subscribers (Jul 2026). Insider: 75% engaged, dormant subscribers returned, 80% of use in app (Press Gazette, self-reported).",
+      "AI chatbot news users skew to 'news lovers': 38% vs 22% overall, and are more open to individual journalists (Reuters DNR 2026).",
+      "Ask FT users: finance, consulting, legal. Uses: meeting and report prep, expert perspectives (FT Strategies).",
+      "Under-35s: 16% use AI chatbots for news weekly; 18–24s far more comfortable with AI-made news (22% vs 7% of 55+).",
+      "CHI 2024: readers send factual questions to bots; two-thirds of integrity challenges were aimed at the human author. Journalists want opinion routed to them.",
+      "For The Economist: retention, differentiation from chatbots, a signal of what readers want explained.",
     ],
   },
 
-  // 3 ─────────────────────────────────────────────────────────────────────────
+  // 4 ── Evidence ────────────────────────────────────────────────────────────
   {
-    id: "signals",
+    id: "evidence",
     layout: "evidence",
-    kicker: "The evidence so far",
-    title: "Promising signals, unproven economics",
-    status: "evidence",
+    kicker: "The evidence",
+    title: "Strong demand, clear warnings",
     signals: [
       {
-        figure: "42%",
-        label: "of AI-chatbot news users ask follow-up questions",
-        source: "Reuters Institute",
-        caveat: "Self-reported survey behaviour",
+        figure: "42–49%",
+        label: "of AI news users ask follow-up questions",
+        source: "[Reuters Institute; to confirm]",
+        caveat: "Self-reported",
         ref: 1,
       },
       {
-        figure: "139%",
-        label: "more likely to return, spending roughly twice as long on site (reported)",
-        source: "TIME AI",
-        caveat: "Observational association, not causal evidence",
+        figure: "20%",
+        label: "trust AI news answers, vs 37% who trust news",
+        source: "[Reuters Institute; to confirm]",
+        caveat: "Favours a trusted, cited source",
         ref: 2,
       },
       {
-        figure: "Ask FT",
-        label: "Conversational journalism already deployed to subscribers",
-        source: "Financial Times",
-        caveat: "Qualitative evidence of utility, little public evidence of commercial impact",
+        figure: "75%",
+        label: "of subscribers engage with Insider, editors on camera",
+        source: "The Economist, via Press Gazette",
+        caveat: "Self-reported",
         ref: 3,
       },
       {
-        figure: "Insider",
-        label: "Reported engagement with access to human editors",
-        source: "The Economist",
-        caveat: "Does not show demand for synthetic representations",
+        figure: "22%",
+        label: "accept AI-written opinion, the least-accepted genre",
+        source: "[Source to confirm]",
+        caveat: "Synthetic video is the most opposed format",
         ref: 4,
       },
     ],
     conclusion: {
-      enough: "Enough evidence to justify **experimentation**",
-      notEnough: "Not enough to justify a **major product commitment**",
+      enough: "Readers **want to ask**, and they value **real editors**",
+      notEnough: "They don't want **AI opinion** or **synthetic presenters**",
     },
     sources: [
-      "Reuters Institute, [report title, year and page reference to confirm]",
-      "TIME, [announcement or interview source and date to confirm]",
-      "Financial Times, Ask FT [public statements and date to confirm]",
-      "The Economist, Economist Insider [reported engagement source to confirm]",
+      "[Follow-up questions source, to confirm]",
+      "[Trust in AI news answers source, to confirm]",
+      "Press Gazette, Economist Insider retention, 18 Jun 2026",
+      "[AI genre acceptance source, to confirm]",
     ],
     notes: [
-      "Be explicit about the quality of each signal. None of them is causal evidence of retention.",
-      "TIME's figure is an association, and heavy users self-select into new features.",
-      "Insider shows people value access to *human* editors. That's an argument for the opportunity, not the avatar.",
-      "Conclusion: fund experiments, not a platform.",
+      "Elsewhere, failures cluster on quotes and opinion: LA Times Insights, the Washington Post's AI podcast, Apple's BBC summaries.",
+      "NYT Cooking: subscribers rejected AI that felt like dilution, even when it was accurate.",
+      "No publisher has independent outcome data. We'd need our own.",
     ],
   },
 
-  // 4 ─────────────────────────────────────────────────────────────────────────
+  // 5 ── The tension ─────────────────────────────────────────────────────────
   {
-    id: "experiments",
+    id: "tension",
+    layout: "synthesis",
+    kicker: "The tension",
+    title: "Do we need to imitate the editor?",
+    bottomLine: [
+      "Readers value getting an editor's view. But they come to The Economist for **human** journalism.",
+      "A synthetic editor risks **devaluing the very thing** that makes the view worth having.",
+      "And a hallucination attributed to a named editor is unacceptable.",
+    ],
+    constraints: {
+      title: "What The Economist has already decided",
+      items: [
+        "People produce the journalism; AI **transforms** it, it doesn't author it",
+        "Always transparent about AI",
+        "Audio Briefings use **invented** personae, not journalists",
+        "Visible human editors (Insider) are a deliberate bet",
+      ],
+    },
+    footnote: "The Economist, How we handle AI-generated content, 9 Jul 2026.",
+    notes: [
+      "This is the turning point. The value is real, but the proposed form fights house policy and reader expectations.",
+      "The line between fact, analysis and opinion is nuanced. Hard to police when a model speaks as a person.",
+    ],
+  },
+
+  // 6 ── The answer ──────────────────────────────────────────────────────────
+  {
+    id: "answer",
     layout: "experiments",
-    kicker: "What I would test first",
-    title: "From hypotheses to experiments",
-    standfirst: "Three questions, each tested against what The Economist already offers.",
-    columns: ["Smallest prototype", "Compare against", "Signal we need"],
+    kicker: "My answer",
+    title: "Ask The Economist, through an editor's lens",
+    standfirst: "The AI is the guide. The editor stays the author.",
+    status: "recommendation",
+    columns: ["Example", "Rule", "When"],
     rows: [
-      {
-        question: "Does conversational access add value beyond existing experiences?",
-        cells: [
-          "Grounded Q&A over a narrow slice of the archive",
-          "Search, article pages, newsletters [existing tools to confirm]",
-          "Higher task success and comprehension",
-        ],
-      },
-      {
-        question: "Does a named editor's perspective add value beyond the collective voice?",
-        cells: [
-          "Identical answers, attributed to an editor or to the house voice",
-          "Unattributed “Economist” answer",
-          "Trust, preference and repeat use",
-        ],
-      },
-      {
-        question: "Do voice or video justify their cost and editorial risk?",
-        cells: [
-          "Voice on the best text variant; video as a clickable mock-up only",
-          "Best-performing text variant",
-          "Preference that survives cost, latency and trust",
-        ],
-      },
+      { question: "**Collective**", cells: ["The Economist's position", "Cited and dated", "Default"] },
+      { question: "**Curate**", cells: ["“Henry has covered this here and here”", "Links only", "Test first"] },
+      { question: "**Report**", cells: ["“Henry wrote: ‘…’”", "Verbatim quotes only", "Test first"] },
+      { question: "**Impersonate**", cells: ["“I think…”", "Not without evidence", "Later, if ever"] },
     ],
     mock: {
-      label: "What a subscriber sees (prototype)",
-      context: "Reading: [Article on the AI investment boom]",
+      label: "Prototype",
+      context: "Reading: [Henry Curr on the AI investment boom] · Editor lens",
       question: "What would turn this boom into a bust?",
-      answer: [
-        "Our coverage points to [two or three conditions drawn from published articles]¹ ²",
-        "Henry Curr argued in [month, year] that [summary of published reasoning]³",
-      ],
-      citations: ["[Article title], [date]", "[Article title], [date]", "[Article title], [date]"],
-      asOf: "Based on journalism published up to [date]",
-      disclaimer: "A summary of published journalism, not a new view from the editor.",
+      answer: ["Henry Curr has written about this three times this year.¹ ² ³", "In [month] he wrote: “[verbatim quote]”³"],
+      citations: ["[Article], [date]", "[Article], [date]", "[Article], [date]"],
+      asOf: "Based on his published work to [date]",
+      disclaimer: "AI summary of published journalism, not a new view from the editor.",
     },
     notes: [
-      "This is the heart of the plan. Each question isolates one variable.",
-      "Q1 tests the conversation itself. If it doesn't beat search and a good article page, nothing else matters.",
-      "Q2 is the real ‘Meet the Editors’ question: does the named person add anything beyond the institution?",
-      "Q3 is last because it's the most expensive and the most risky. Only test it on a text experience that already works.",
-      "Methods: moderated sessions with [n] subscribers, then an unmoderated comparative test. [Confirm research capacity.]",
+      "New compared with what the Lab has: perspective. Who holds a view, since when, and a route to the real person.",
+      "Personas: no. Tilting sceptical or optimistic colours a position that should be clear. For challenge, surface dissent we've published.",
+      "Group discussions: same problem. Compare what editors have published instead.",
+      "Adapting to expertise changes depth, not position. A later test.",
+      "Safeguards: claim-level citation checks, fact/opinion tags, dated views, 'not covered' refusals, editor opt-in, red-teaming. (Appendix A1.)",
+      "Guardrail: it mustn't reduce engagement with human journalism.",
     ],
   },
 
-  // 5 ─────────────────────────────────────────────────────────────────────────
+  // 7 ── How we'd find out ───────────────────────────────────────────────────
   {
-    id: "trust",
-    layout: "trust",
-    kicker: "Editorial integrity",
-    title: "Editorial trust is a product requirement",
-    standfirst: "The product must never blur three different kinds of voice.",
-    tiers: [
-      {
-        label: "The Economist's position",
-        who: "Institutional, unsigned, collectively agreed",
-        rule: "Can be summarised and cited as the paper's view",
-      },
-      {
-        label: "An editor's published view",
-        who: "Attributable, dated, in context",
-        rule: "Can be quoted with attribution and date, with the editor's consent",
-      },
-      {
-        label: "New AI-generated opinion",
-        who: "Written and approved by no one",
-        rule: "Must never be presented as anyone's view",
-      },
-    ],
-    principles: [
-      { title: "Grounding", text: "Answers come from published work" },
-      { title: "Citations", text: "Every claim links to its source" },
-      { title: "Temporal context", text: "Show when a view was held" },
-      { title: "Consent", text: "Editors opt in and can opt out" },
-      { title: "Oversight", text: "Editorial owns the policy" },
-      { title: "Calibrated refusal", text: "Say “we haven't covered that”" },
-      { title: "Adversarial evals", text: "Red-team before every release" },
-    ],
-    principle:
-      "Trust has to be designed into the product and its operating processes. It can't be delegated to a system prompt.",
-    notes: [
-      "Synthetic editors put the hardest problem first: putting words in a real journalist's mouth.",
-      "The refusal behaviour is a feature: ‘we haven't written about that’ is a trustworthy answer.",
-      "Operating process matters as much as the model: who signs off policy, who reviews failures, how fast we correct.",
-    ],
-  },
-
-  // 6 ─────────────────────────────────────────────────────────────────────────
-  {
-    id: "architecture",
-    layout: "architecture",
-    kicker: "Technical design",
-    title: "Build the differentiation, buy the commodities",
-    layers: [
-      { name: "Content & metadata", detail: "Archive, authorship, dates, rights, entitlements", decision: "Integrate" },
-      { name: "Retrieval & grounding", detail: "Hybrid search, reranking, provenance on every passage", decision: "Build" },
-      { name: "Orchestration", detail: "Conversation state, query planning, model routing", decision: "Build" },
-      { name: "Editorial controls & evals", detail: "Policies, eval sets, red-teaming, human review", decision: "Build" },
-      { name: "Interfaces", detail: "Text first. Voice and video through providers", decision: "Buy" },
-    ],
-    columns: [
-      {
-        title: "Buy",
-        items: [
-          "Frontier models, behind a provider-neutral interface",
-          "Speech-to-text, text-to-speech, video",
-          "Vector and search infrastructure",
-          "Tracing and observability tooling",
-        ],
-      },
-      {
-        title: "Build",
-        items: [
-          "Grounding tuned to the Economist corpus",
-          "Attribution and provenance model",
-          "Editorial eval harness and golden sets",
-          "The subscriber experience",
-        ],
-      },
-      {
-        title: "Measure from day one",
-        items: [
-          "Accuracy and attribution, measured by evals",
-          "Latency: p95 to first token [target TBC]",
-          "Cost per conversation",
-          "A trace for every answer",
-        ],
-      },
-      {
-        title: "Prototype vs production",
-        items: [
-          "**Weeks:** narrow corpus, offline evals, internal users",
-          "**Production:** rights, entitlements, scale",
-          "**Production:** monitoring, incident and correction process",
-        ],
-      },
-    ],
-    footnote:
-      "Assumes nothing about The Economist's internal architecture. Integration points get mapped in weeks 1–3.",
-    notes: [
-      "Differentiation is the corpus, the provenance and the editorial controls, not the model.",
-      "Keep models swappable: the frontier moves every quarter, and evals are what make swapping safe.",
-      "Rights: confirm which archive content can be used for retrieval, and whether contributor terms differ. [Discover]",
-      "A prototype is weeks of work. Production quality is mostly about entitlements, monitoring and correction.",
-    ],
-  },
-
-  // 7 ─────────────────────────────────────────────────────────────────────────
-  {
-    id: "plan",
+    id: "method",
     layout: "plan",
-    kicker: "Leading the team",
-    title: "The first 12 weeks: ship, learn, decide",
+    kicker: "Validation",
+    title: "How we'd find out",
+    standfirst: "Each part is tested on its own. Timings are indicative.",
     phases: [
       {
-        weeks: "Weeks 1–3",
+        weeks: "~2–3 weeks",
         span: 3,
-        title: "Understand",
-        activities: [
-          "Review existing work and systems",
-          "Talk to subscribers and editors",
-          "Agree editorial constraints",
-          "Prototype one narrow use case",
-        ],
-        metrics: ["Task success", "Comprehension"],
-        gate: "Is there a narrow job worth testing?",
+        title: "Discover",
+        activities: ["Is the corpus attributable?", "What do subscribers ask?", "Will an editor take part?"],
+        metrics: ["Corpus coverage"],
+        gate: "Viable corpus, willing editor",
       },
       {
-        weeks: "Weeks 4–7",
+        weeks: "~3–4 weeks",
         span: 4,
-        title: "Compare",
-        activities: [
-          "Run comparative tests against existing experiences",
-          "Evaluate quality, usefulness and trust",
-          "Iterate weekly",
-        ],
-        metrics: ["Editorial accuracy", "Attribution", "Trust"],
-        gate: "Does conversation beat what exists?",
+        title: "Prove integrity",
+        activities: ["One editor, text only", "Evals built with the editor", "Red-team"],
+        metrics: ["Faithfulness", "Refusal rate"],
+        gate: "Editor signs off",
       },
       {
-        weeks: "Weeks 8–12",
-        span: 5,
-        title: "Pilot",
-        activities: [
-          "Explore voice, and video only if justified",
-          "Run a controlled pilot",
-          "Make the investment decision",
-        ],
-        metrics: ["Latency and cost", "Repeat engagement", "Incremental subscriber outcomes"],
-        gate: "Invest, pivot or stop",
+        weeks: "~3–4 weeks",
+        span: 4,
+        title: "Prove value",
+        activities: ["Editor lens vs collective", "Curate vs report"],
+        metrics: ["Preference", "Return use"],
+        gate: "Beats the collective answer",
       },
     ],
-    team: [
-      "Product lead",
-      "AI engineers ×2",
-      "Full-stack engineer",
-      "Designer / researcher",
-      "Editorial partner",
-      "Data scientist (shared)",
-    ],
+    team: ["Product", "Engineers ×2", "Design", "Editorial partner", "Data (shared)"],
     decisions: {
-      invest: "Clear uplift over existing experiences at acceptable cost and trust",
-      pivot: "Real value, but in a different job, format or audience",
-      stop: "No incremental value, or trust can't be maintained",
+      invest: "Next step up: more editors, voice, agents",
+      pivot: "Collective Q&A plus recorded editor answers",
+      stop: "Integrity can't be met",
     },
     notes: [
-      "Small team, editorial in the room from day one, not as reviewers at the end.",
-      "Metrics mature with the work: from task success early to incremental subscriber outcomes at the end.",
-      "Stopping is a legitimate, successful outcome if the evidence says so.",
-      "[Team size and composition to adjust once I understand existing AI Lab capacity.]",
+      "Each step: hypothesis, smallest test that could disprove it, metric agreed in advance, then go, reshape or stop.",
+      "Integrity before demand: if editors won't put their name to it, nothing else matters.",
+      "A small pod, the model they already use (CarPlay). Editorial is a member, not a reviewer at the end.",
+      "Video only after every earlier gate passes.",
     ],
   },
 
-  // 8 ─────────────────────────────────────────────────────────────────────────
+  // 8 ── How we'd build it ───────────────────────────────────────────────────
   {
-    id: "beyond",
-    layout: "closing",
-    kicker: "A longer-term view",
-    title: "Beyond avatars: The Economist as an intelligence service",
-    status: "direction",
-    opportunities: [
-      {
-        title: "Richer owned experiences",
-        items: ["Personalisation", "Conversational exploration", "Proactive monitoring", "Event-driven updates"],
-      },
-      {
-        title: "Economist intelligence, anywhere",
-        items: [
-          "Authenticated access from subscribers' own agents",
-          "Entitlement-aware by design",
-          "Attribution that travels with the content",
-        ],
-      },
+    id: "build",
+    layout: "architecture",
+    kicker: "Technology",
+    title: "How we'd build it",
+    standfirst: "Generation is a commodity. Attribution and verification are the hard part.",
+    layers: [
+      { name: "Analyse & route", detail: "What kind of question? Whose lens?", decision: "Build" },
+      { name: "Look up", detail: "The editor's work, with author and date", decision: "Integrate" },
+      { name: "Answer", detail: "Quote-first, third person", decision: "Integrate" },
+      { name: "Validate", detail: "Check every claim; fall back to links", decision: "Build" },
+      { name: "Render", detail: "Text first; voice later", decision: "Buy" },
+      { name: "Evaluate", detail: "Scored with editors", decision: "Build" },
     ],
-    foundation: {
-      title: "Shared foundation",
-      items: ["Content", "Grounding", "Provenance", "Entitlements"],
-    },
-    principle: "Own the subscriber relationship, but don't depend on owning every interface.",
-    caveat: "A possible longer-term direction, not a committed strategy or roadmap.",
+    columns: [
+      { title: "Buy", items: ["Models", "Voice and video", "Observability"] },
+      { title: "Build", items: ["Attribution", "Verification", "Editorial evals"] },
+      { title: "Reuse", items: ["Audio Briefings pipeline", "Article Q&A prototype"] },
+    ],
+    footnote: "Assumes nothing about the current stack. Vendor choices follow an audit.",
     notes: [
-      "Zoom out: the same capabilities serve the app and the agents subscribers will increasingly use.",
-      "The shared foundation is the durable asset. Interfaces will keep changing.",
-      "Close on humility: this is a direction to test, not a roadmap. Then open for questions.",
+      "First question is the corpus, not the model: most articles are unsigned.",
+      "In real time there's no human edit per answer, so validation is automated. If it fails, regenerate once, then fall back to links.",
+      "Off-the-shelf to learn; review open source for production cost.",
+      "My background: gen-AI audio pipelines with script generation, fact-checking and ElevenLabs. Close to Audio Briefings.",
     ],
+  },
+
+  // 9 ── Beyond the app ──────────────────────────────────────────────────────
+  {
+    id: "agents",
+    layout: "closing",
+    kicker: "Agents",
+    title: "Beyond the app",
+    standfirst: "Readers increasingly arrive through AI agents. The same core can serve them.",
+    opportunities: [
+      { title: "Our app and site", items: ["The full experience", "The subscriber relationship"] },
+      { title: "Readers' own agents", items: ["Through MCP, entitled by subscription", "Cited answers that link back"] },
+    ],
+    foundation: { title: "One core", items: ["Retrieval", "Attribution", "Checks", "Entitlements"] },
+    principle: "Attribution keeps The Economist visible inside someone else's interface.",
+    caveat: "How far to go with agents is a strategy call. This just needs to be ready.",
+    notes: [
+      "Search referrals are falling; agent traffic is replacing human traffic.",
+      "The Economist already experiments: the Graphs ChatGPT app. [How did it do?]",
+      "Platforms are immature, so keep bets small and reversible.",
+    ],
+  },
+
+  // 10 ── Recommendation ─────────────────────────────────────────────────────
+  {
+    id: "close",
+    layout: "columns",
+    kicker: "Recommendation",
+    title: "Start with the lens. Let evidence decide the rest",
+    columns: [
+      { title: "Build", items: ["Ask The Economist, with an editor lens", "Editors quoted, never imitated"] },
+      { title: "Test first", numbered: true, items: ["Is the corpus attributable?", "Can we stay faithful?", "Do readers value it?"] },
+      { title: "Then, if it earns it", items: ["Voice", "Agents", "Video, last"] },
+    ],
+    notes: ["Thank you. Questions."],
   },
 
   // ═══ APPENDIX ═══════════════════════════════════════════════════════════════
+
+  // Editorial safeguards (moved from main deck) ────────────────────────────────
+  {
+    id: "appendix-safeguards",
+    layout: "trust",
+    appendix: true,
+    kicker: "Appendix · Editorial safeguards",
+    title: "Three voices, never blurred",
+    tiers: [
+      { label: "The Economist's position", who: "Institutional, unsigned", rule: "Summarise and cite" },
+      { label: "An editor's published view", who: "Attributable, dated", rule: "Quote verbatim, with consent" },
+      { label: "New AI-generated opinion", who: "Approved by no one", rule: "Never presented as anyone's view" },
+    ],
+    principles: [
+      { title: "Third person", text: "Never “I think”" },
+      { title: "Quote", text: "Claim-level citation checks" },
+      { title: "Tag", text: "Fact, analysis or opinion" },
+      { title: "Date", text: "Show when a view changed" },
+      { title: "Refuse", text: "“We haven't covered that”" },
+      { title: "Consent", text: "Editors opt in" },
+      { title: "Red-team", text: "Before every release" },
+    ],
+    principle: "Editorial co-owns the evals and the sign-off.",
+    notes: ["Use in Q&A on editorial risk.", "Review tiered by risk, as with curated vs personalised Audio Briefings."],
+  },
   // Source: research-synthesis.md (8 Nov 2026, revised 9 Nov). Evidence IDs
   // (S1, CJ1…) refer to research.md. Reference material for Q&A.
 
@@ -741,9 +701,11 @@ export const slides: Slide[] = [
       },
       {
         tool: "Claude",
-        context: "Structuring the preparation",
-        prompt: "[Paste excerpt]",
-        outcome: "[What it produced, e.g. the staged plan or the hypothesis scorecard]",
+        context: "Shaping the concept, 9 Nov",
+        prompt:
+          "One thing to consider with editors - is it better to editorially deliver the info to users in a different way, ie \"Henry Curr said X\" or \"Henry Curr has covered this here and here\" etc rather than pretending to be Henry Curr",
+        outcome:
+          "My pushback became the core design choice: third-person attribution (curate, report) instead of impersonation. I also rejected personas and reframed Claude's \"views with receipts\" idea into the editor lens.",
       },
     ],
     footnote: "Excerpts lightly trimmed. Full transcripts available on request.",
