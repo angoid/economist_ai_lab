@@ -1,0 +1,11 @@
+node_modules
+dist
+.DS_Store
+# Environment variables / secrets
+.env
+*.local
+
+# Dependencies (if doing web development)
+node_modules/
+y
+

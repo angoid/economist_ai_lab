@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/*
+ * Tokens taken from The Economist Design System (design-system.economist.com,
+ * dist/5.99.2 common.css). Names follow the system's city palettes.
+ *
+ * Fonts: Milo (serif) and Econ Sans are licensed Economist typefaces. If they are
+ * installed locally they are used automatically; otherwise the design system's
+ * own fallback stacks apply (Charter / system sans on macOS).
+ */
+@theme {
+  --color-econ-red: #e3120b;
+  --color-econ-red-60: #f6423c;
+
+  --color-london-5: #0d0d0d;
+  --color-london-10: #1a1a1a;
+  --color-london-20: #333333;
+  --color-london-35: #595959;
+  --color-london-70: #b3b3b3;
+  --color-london-85: #d9d9d9;
+  --color-london-95: #f2f2f2;
+  --color-london-100: #ffffff;
+
+  --color-chicago-20: #141f52;
+  --color-chicago-30: #1f2e7a;
+  --color-chicago-45: #2e45b8;
+  --color-chicago-90: #d6dbf5;
+  --color-chicago-95: #ebedfa;
+
+  --color-los-angeles-85: #e1dfd0;
+  --color-los-angeles-90: #ebe9e0;
+  --color-los-angeles-95: #f5f4ef;
+
+  --color-tokyo-45: #c91d42;
+  --color-tokyo-95: #fce9ed;
+
+  --color-hong-kong-45: #1dc9a4;
+  --color-hong-kong-95: #e9fcf8;
+
+  --color-new-york-55: #f9c31f;
+  --color-new-york-90: #fef2cd;
+
+  --font-serif: "MiloTE", "MiloTESec", Charter, "Bitstream Charter", "Iowan Old Style", "Calisto MT", serif;
+  --font-sans: "EconSansOS", "EconSansOSSec", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-sans-condensed: "EconSansCnd", "EconSansCndSec", "Arial Narrow", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-london-5);
+  color: var(--color-london-10);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.hide-cursor,
+.hide-cursor * {
+  cursor: none !important;
+}
