@@ -11,6 +11,7 @@ import type {
   EvidenceSlide,
   ExperimentsSlide,
   JobsSlide,
+  JourneySlide,
   PlanSlide,
   Slide,
   TrustSlide,
@@ -145,9 +146,9 @@ function Evidence({ s, ...pos }: { s: EvidenceSlide } & Pos) {
   return (
     <Frame {...pos} {...s}>
       <div className="flex flex-col h-full">
-        <div className="grid grid-cols-4 gap-[40px]">
-          {s.signals.map((sig) => (
-            <div key={sig.ref} className="border-t-[4px] border-london-5 pt-5 flex flex-col">
+        <div className="grid gap-[48px]" style={{ gridTemplateColumns: `repeat(${s.signals.length}, minmax(0, 1fr))` }}>
+          {s.signals.map((sig, i) => (
+            <div key={i} className="border-t-[4px] border-london-5 pt-5 flex flex-col">
               <p className="font-serif text-[80px] leading-none text-london-5 tracking-[-0.02em]">
                 {sig.figure}
                 <sup className="font-sans text-[22px] text-london-35 ml-1 align-super">{sig.ref}</sup>
@@ -155,6 +156,21 @@ function Evidence({ s, ...pos }: { s: EvidenceSlide } & Pos) {
               <p className="text-[24px] leading-[1.35] text-london-20 mt-4">
                 <Rich text={sig.label} />
               </p>
+              {sig.ladder && (
+                <ul className="mt-5 space-y-[10px]">
+                  {sig.ladder.map((r) => (
+                    <li key={r.label}>
+                      <div className="flex justify-between text-[18px] leading-tight text-london-20">
+                        <span>{r.label}</span>
+                        <span className="font-semibold text-london-5">{r.value}%</span>
+                      </div>
+                      <div className="h-[10px] bg-london-85 mt-1">
+                        <div className="h-full bg-chicago-30" style={{ width: `${r.value}%` }} />
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
               <p className="text-[19px] font-semibold text-london-5 mt-4">{sig.source}</p>
               <p className="text-[19px] leading-[1.4] text-tokyo-45 mt-2">
                 <span className="font-semibold">Caveat: </span>
@@ -179,13 +195,20 @@ function Evidence({ s, ...pos }: { s: EvidenceSlide } & Pos) {
           </div>
         </div>
 
-        <ol className="mt-auto grid grid-cols-2 gap-x-[40px] gap-y-1 text-[16px] text-london-35 leading-[1.5]">
-          {s.sources.map((src, i) => (
-            <li key={i}>
-              <span className="font-semibold">{i + 1}.</span> <Rich text={src} />
-            </li>
-          ))}
-        </ol>
+        <div className="mt-auto">
+          <ol className="grid grid-cols-1 gap-y-1 text-[16px] text-london-35 leading-[1.5]">
+            {s.sources.map((src, i) => (
+              <li key={i}>
+                <span className="font-semibold">{i + 1}.</span> <Rich text={src} />
+              </li>
+            ))}
+          </ol>
+          {s.footnote && (
+            <p className="text-[16px] italic text-london-35 mt-2">
+              <Rich text={s.footnote} />
+            </p>
+          )}
+        </div>
       </div>
     </Frame>
   );
@@ -626,6 +649,83 @@ function Columns({ s, ...pos }: { s: ColumnsSlide } & Pos) {
   );
 }
 
+// ── Journey: the proposed experience ───────────────────────────────────────
+function Journey({ s, ...pos }: { s: JourneySlide } & Pos) {
+  return (
+    <Frame {...pos} {...s}>
+      <div className={`grid gap-[64px] h-full ${s.mock ? "grid-cols-[1fr_620px]" : "grid-cols-1"}`}>
+        <div className="flex flex-col">
+          <p className="text-[19px] font-semibold uppercase tracking-[0.08em] text-chicago-30">{s.journeyLabel}</p>
+          <ol className="mt-4 grid gap-[16px]" style={{ gridTemplateColumns: `repeat(${s.journey.length}, minmax(0, 1fr))` }}>
+            {s.journey.map((step, i) => (
+              <li key={i} className="border-t-[4px] border-chicago-30 pt-3">
+                <span className="font-serif text-[36px] leading-none text-econ-red">{i + 1}</span>
+                <p className="text-[23px] leading-[1.3] text-london-10 mt-2">
+                  <Rich text={step} />
+                </p>
+              </li>
+            ))}
+          </ol>
+          <div className="mt-auto space-y-6">
+            {s.points.map((p) => (
+              <div key={p.title} className="border-l-[5px] border-london-5 pl-6">
+                <p className="text-[22px] font-semibold text-london-5">{p.title}</p>
+                <p className="text-[24px] leading-[1.38] text-london-20 mt-1">
+                  <Rich text={p.text} />
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {s.mock && (
+        <aside className="self-start">
+          <p className="text-[19px] font-semibold uppercase tracking-[0.08em] text-chicago-30 mb-3">{s.mock.label}</p>
+          <div className="bg-london-100 border border-london-85">
+            <div className="px-6 py-3 border-b border-london-85 text-[17px] text-london-35 flex items-center gap-3">
+              <span className="w-[10px] h-[10px] bg-econ-red" />
+              <Rich text={s.mock.context} />
+            </div>
+            <div className="px-6 py-5 space-y-4">
+              <div className="ml-auto max-w-[85%] bg-london-95 px-5 py-3 text-[20px] text-london-10 w-fit">
+                {s.mock.question}
+              </div>
+              <div className="text-[19px] leading-[1.5] text-london-20 space-y-2">
+                {s.mock.answer.map((a, i) => (
+                  <p key={i}>
+                    <Rich text={a} />
+                  </p>
+                ))}
+              </div>
+              <div className="inline-block bg-chicago-95 text-chicago-30 text-[15px] font-semibold px-3 py-1">
+                <Rich text={s.mock.asOf} />
+              </div>
+              <ol className="border-t border-london-85 pt-3 text-[15px] text-london-35 space-y-1">
+                {s.mock.citations.map((c, i) => (
+                  <li key={i}>
+                    {i + 1}. <Rich text={c} />
+                  </li>
+                ))}
+              </ol>
+              {s.mock.followUps && (
+                <div className="flex flex-wrap gap-2">
+                  {s.mock.followUps.map((f) => (
+                    <span key={f} className="text-[16px] border border-chicago-30 text-chicago-30 px-3 py-1">
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <p className="text-[15px] italic text-london-35">{s.mock.disclaimer}</p>
+            </div>
+          </div>
+        </aside>
+        )}
+      </div>
+    </Frame>
+  );
+}
+
 // ── Appendix: how I used AI ─────────────────────────────────────────────────
 function Tools({ s, ...pos }: { s: ToolsSlide } & Pos) {
   return (
@@ -724,5 +824,7 @@ export function SlideView({ slide, index, total }: { slide: Slide } & Pos) {
       return <Tools s={slide} {...pos} />;
     case "excerpts":
       return <Excerpts s={slide} {...pos} />;
+    case "journey":
+      return <Journey s={slide} {...pos} />;
   }
 }

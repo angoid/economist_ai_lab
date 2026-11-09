@@ -41,9 +41,19 @@ export interface JobsSlide extends Base {
 
 export interface EvidenceSlide extends Base {
   layout: "evidence";
-  signals: { figure: string; label: string; source: string; caveat: string; ref: number }[];
+  signals: {
+    figure: string;
+    label: string;
+    source: string;
+    caveat: string;
+    ref: number;
+    /** Optional bar ladder (values are percentages). */
+    ladder?: { label: string; value: number }[];
+  }[];
   conclusion: { enough: string; notEnough: string };
   sources: string[];
+  /** Optional caveat line under the sources. */
+  footnote?: string;
 }
 
 export interface ExperimentsSlide extends Base {
@@ -135,7 +145,26 @@ export interface ExcerptsSlide extends Base {
   footnote: string;
 }
 
+export interface JourneySlide extends Base {
+  layout: "journey";
+  journeyLabel: string;
+  journey: string[];
+  points: { title: string; text: string }[];
+  /** Optional mock-up panel; omit for a full-width slide. */
+  mock?: {
+    label: string;
+    context: string;
+    question: string;
+    answer: string[];
+    citations: string[];
+    asOf: string;
+    disclaimer: string;
+    followUps?: string[];
+  };
+}
+
 export type Slide =
+  | JourneySlide
   | ToolsSlide
   | ExcerptsSlide
   | SynthesisSlide
