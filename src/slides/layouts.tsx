@@ -180,6 +180,12 @@ function Evidence({ s, ...pos }: { s: EvidenceSlide } & Pos) {
           ))}
         </div>
 
+        {s.takeaway && (
+          <p className="mt-[40px] font-serif text-[30px] leading-[1.3] text-london-5 border-l-[6px] border-econ-red pl-6 max-w-[1500px]">
+            <Rich text={s.takeaway} />
+          </p>
+        )}
+        {s.conclusion && (
         <div className="grid grid-cols-2 gap-[40px] mt-[44px]">
           <div className="bg-chicago-30 text-london-100 px-8 py-6 flex items-center gap-6">
             <span className="text-[44px] leading-none">✓</span>
@@ -194,6 +200,7 @@ function Evidence({ s, ...pos }: { s: EvidenceSlide } & Pos) {
             </p>
           </div>
         </div>
+        )}
 
         <div className="mt-auto">
           <ol className="grid grid-cols-1 gap-y-1 text-[16px] text-london-35 leading-[1.5]">

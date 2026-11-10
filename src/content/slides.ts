@@ -51,8 +51,10 @@ export const slides: Slide[] = [
         items: ["**Deep:** who it's for, editorial risk, validation", "**Light:** delivery plan and stack, which depend on what's already in place"],
       },
     ],
+    footnote: "**Where I land:** editors' published analysis, in conversation, quoted rather than imitated. Start with one editor, in text, and grow as the evidence allows. Here's how I got there.",
     notes: [
       "Quick recap so we share the starting point.",
+      "Signpost the answer now: editors' published analysis, in conversation, quoted rather than imitated. One editor in text is the first test, not the end state.",
       "The brief invites us to narrow, reshape or recommend against. I'll show how I got to an answer, not just the answer.",
       "I've gone light on delivery planning deliberately: it depends on capacity and existing work I'd learn about in week one.",
     ],
@@ -68,7 +70,7 @@ export const slides: Slide[] = [
     jobs: [
       {
         title: "Engaged subscribers",
-        text: "Already follow editors: **75%** engage with Insider. News lovers are also the heaviest AI news users. **Primary.**",
+        text: "Already follow editors through Insider and podcasts. News lovers are also the heaviest AI news users. **Primary.**",
       },
       {
         title: "Professionals at work",
@@ -134,10 +136,7 @@ export const slides: Slide[] = [
         ],
       },
     ],
-    conclusion: {
-      enough: "Readers want to **ask questions**, and they trust **people**",
-      notEnough: "They resist AI **presenting or authoring** the news",
-    },
+    takeaway: "Readers want to ask questions, and are most comfortable when **people**, not AI, write and present the news.",
     sources: [
       "Reuters Institute, Generative AI & News Report 2026. 9 countries incl. US and UK, ~2,000 each, YouGov, Aug–Sep 2026",
       "Reuters Institute, Digital News Report 2026",
@@ -189,7 +188,7 @@ export const slides: Slide[] = [
     layout: "journey",
     kicker: "My answer",
     title: "Meet the Editors: start with a text conversation",
-    standfirst: "Explore an editor's published analysis, ask follow-up questions and trace every answer to its source. It can stand alone or become one mode of a broader conversational journalism tool.",
+    standfirst: "Explore our editors' published analysis, ask follow-up questions and trace every answer to its source. Tested with one editor first, then grown across editors, on its own or within a broader conversational journalism tool.",
     status: "recommendation",
     journeyLabel: "One journey",
     journey: [
@@ -229,13 +228,42 @@ export const slides: Slide[] = [
     ],
   },
 
+  // 6b ── Editorial safeguards ─────────────────────────────────────────────
+  {
+    id: "safeguards",
+    layout: "trust",
+    kicker: "Editorial risk",
+    title: "Keeping it trustworthy: a starting proposal",
+    standfirst: "Suggested safeguards to agree with editors. The rules are theirs to set; the Lab builds them in.",
+    tiers: [
+      { label: "The Economist's position", who: "Institutional, unsigned", rule: "Summarise and cite" },
+      { label: "An editor's published view", who: "Attributable, dated", rule: "Quote verbatim, with consent" },
+      { label: "New AI-generated opinion", who: "Approved by no one", rule: "Never presented as anyone's view" },
+    ],
+    principles: [
+      { title: "Third person", text: "Never “I think”" },
+      { title: "Quote", text: "Claim-level citation checks" },
+      { title: "Tag", text: "Fact, analysis or opinion" },
+      { title: "Date", text: "Show when a view changed" },
+      { title: "Refuse", text: "“We haven't covered that”" },
+      { title: "Consent", text: "Editors opt in" },
+      { title: "Red-team", text: "Before every release" },
+    ],
+    principle: "Editors decide the final rules and sign off.",
+    notes: [
+      "This is how we'd handle the editorial risk from slide 5, offered as a starting point for editors, not a decision for the Lab to make.",
+      "Review is tiered by risk, as with curated vs personalised Audio Briefings.",
+      "Guardrail: it must not reduce engagement with human journalism.",
+    ],
+  },
+
   // 7 ── How we'd find out ───────────────────────────────────────────────────
   {
     id: "method",
     layout: "plan",
     kicker: "Validation",
     title: "How we'd find out",
-    standfirst: "Fast, overlapping steps, each ending in a decision. Timings are indicative.",
+    standfirst: "Fast, overlapping steps, each ending in a decision. Beyond the pilot, we'd track retention, cost per answer, editor time, and whether readers still go on to the journalism.",
     phases: [
       {
         weeks: "Weeks 1–3",
@@ -422,32 +450,18 @@ export const slides: Slide[] = [
     ],
   },
 
-  // ═══ APPENDIX ═══════════════════════════════════════════════════════════════
-
-  // Editorial safeguards (moved from main deck) ────────────────────────────────
+  // End ── stops the deck running into the appendix ─────────────────────────
   {
-    id: "appendix-safeguards",
-    layout: "trust",
-    appendix: true,
-    kicker: "Appendix · Editorial safeguards",
-    title: "Three voices, never blurred",
-    tiers: [
-      { label: "The Economist's position", who: "Institutional, unsigned", rule: "Summarise and cite" },
-      { label: "An editor's published view", who: "Attributable, dated", rule: "Quote verbatim, with consent" },
-      { label: "New AI-generated opinion", who: "Approved by no one", rule: "Never presented as anyone's view" },
-    ],
-    principles: [
-      { title: "Third person", text: "Never “I think”" },
-      { title: "Quote", text: "Claim-level citation checks" },
-      { title: "Tag", text: "Fact, analysis or opinion" },
-      { title: "Date", text: "Show when a view changed" },
-      { title: "Refuse", text: "“We haven't covered that”" },
-      { title: "Consent", text: "Editors opt in" },
-      { title: "Red-team", text: "Before every release" },
-    ],
-    principle: "Editorial co-owns the evals and the sign-off.",
-    notes: ["Use in Q&A on editorial risk.", "Review tiered by risk, as with curated vs personalised Audio Briefings."],
+    id: "end",
+    layout: "cover",
+    kicker: "The end",
+    title: "Thank you",
+    standfirst: "Questions welcome.",
+    presenter: "Angus Keith · Appendix follows",
+    notes: ["End of the presentation. The appendix is for Q&A only: press → to continue into it, or O for the overview."],
   },
+
+  // ═══ APPENDIX ═══════════════════════════════════════════════════════════════
 
   // Attribution modes (moved from main deck) ───────────────────────────────────
   {
@@ -693,7 +707,7 @@ export const slides: Slide[] = [
         numbered: true,
         items: [
           "**Strengthen vs diminish the human editor.** Leading candidate: AI answers facts from editors' attributable work, with citations; opinion is routed to the real editor or answered only in their own recorded words.",
-          "**Collective vs named voice.** “Ask The Economist” with editors as cited voices, or editor-specific entry points.",
+          "**Collective vs named voice.** A publication-wide Q&A with editors as cited voices, or editor-specific entry points.",
           "**Faithfulness vs usefulness.** The refusal rate on fresh news.",
           "**Answering the brief's ambition.** Build towards real-time video editors in stages, gated on evidence.",
         ],

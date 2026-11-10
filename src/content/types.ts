@@ -50,7 +50,9 @@ export interface EvidenceSlide extends Base {
     /** Optional bar ladder (values are percentages). */
     ladder?: { label: string; value: number }[];
   }[];
-  conclusion: { enough: string; notEnough: string };
+  conclusion?: { enough: string; notEnough: string };
+  /** Optional one-line summary, a lighter alternative to the conclusion boxes. */
+  takeaway?: string;
   sources: string[];
   /** Optional caveat line under the sources. */
   footnote?: string;
