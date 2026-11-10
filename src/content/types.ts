@@ -18,6 +18,8 @@ interface Base {
   status?: Status;
   /** Appendix slides come after the main deck and are labelled A1, A2… */
   appendix?: boolean;
+  /** Hidden slides stay in the file but are left out of the deck. */
+  hidden?: boolean;
   /** Presenter notes: one talking point per string. */
   notes: string[];
 }
@@ -92,7 +94,8 @@ export interface ArchitectureSlide extends Base {
 export interface PlanSlide extends Base {
   layout: "plan";
   phases: { weeks: string; span: number; title: string; activities: string[]; metrics: string[]; gate: string }[];
-  team: string[];
+  /** Optional team line; omit to hide it. */
+  team?: string[];
   decisions: { invest: string; pivot: string; stop: string };
 }
 

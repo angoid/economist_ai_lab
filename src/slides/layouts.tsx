@@ -337,7 +337,7 @@ function Trust({ s, ...pos }: { s: TrustSlide } & Pos) {
         </div>
 
         <Section title="Designed in, not bolted on" className="mt-8">
-          <div className="grid grid-cols-7 gap-[20px]">
+          <div className="grid gap-[20px]" style={{ gridTemplateColumns: `repeat(${s.principles.length}, minmax(0, 1fr))` }}>
             {s.principles.map((p) => (
               <div key={p.title}>
                 <p className="text-[22px] font-semibold text-london-5 leading-tight">{p.title}</p>
@@ -463,16 +463,18 @@ function Plan({ s, ...pos }: { s: PlanSlide } & Pos) {
           ))}
         </div>
 
-        <div className="grid grid-cols-[1fr_1.6fr] gap-[48px] mt-8">
-          <Section title="Small cross-functional team">
-            <div className="flex flex-wrap gap-2">
-              {s.team.map((t) => (
-                <span key={t} className="text-[18px] border border-london-70 px-3 py-1 text-london-20 bg-london-100">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </Section>
+        <div className={`grid gap-[48px] mt-8 ${s.team ? "grid-cols-[1fr_1.6fr]" : "grid-cols-1"}`}>
+          {s.team && (
+            <Section title="Small cross-functional team">
+              <div className="flex flex-wrap gap-2">
+                {s.team.map((t) => (
+                  <span key={t} className="text-[18px] border border-london-70 px-3 py-1 text-london-20 bg-london-100">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </Section>
+          )}
           <Section title="Week 12 decision">
             <div className="grid grid-cols-3 gap-[20px]">
               {(

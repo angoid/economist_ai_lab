@@ -13,7 +13,7 @@ export const deck = {
   footer: "Meet the Editors · Case study",
 };
 
-export const slides: Slide[] = [
+const allSlides: Slide[] = [
   // 1 ── Title ───────────────────────────────────────────────────────────────
   {
     id: "title",
@@ -204,14 +204,14 @@ export const slides: Slide[] = [
     layout: "journey",
     kicker: "My answer",
     title: "Meet the Editors: start with a text conversation",
-    standfirst: "Explore our editors' published analysis, ask follow-up questions and trace every answer to its source. Tested with one editor first, then grown across editors, on its own or within a broader conversational journalism tool.",
+    standfirst: "Explore editors' published analysis and ask follow-up questions, with every answer cited. Test with one editor first, then grown across editors.",
     status: "recommendation",
     journeyLabel: "One journey",
     journey: [
       "Choose **Henry Curr**",
       "Ask about the **AI investment boom**",
       "Get a **sourced** answer showing how his view has developed",
-      "**Follow up**",
+      "**Follow up**, e.g. “What's changed since?”",
     ],
     points: [
       {
@@ -219,16 +219,16 @@ export const slides: Slide[] = [
         text: "Answers represent **published analysis**, clearly labelled as AI. They don't invent the editor's current views.",
       },
       {
-        title: "Hypothesis",
-        text: "Does the **named editor** make this more valuable than a publication-wide answer?",
-      },
-      {
         title: "Formats",
-        text: "**Text first.** Audio within existing rules: a house AI voice, or the editor's own published words in their cloned voice, with consent. **Video: test the reaction before building anything.**",
+        text: "**Text first.** Then audio, following The Economist's current AI voice practice. Video only if testers respond well to a mock-up.",
       },
       {
-        title: "Next",
-        text: "When the archive can't answer, **put the question to the editor**.",
+        title: "Learning loop",
+        text: "Unanswered questions show editors **what readers want explained**.",
+      },
+      {
+        title: "Hypothesis",
+        text: "Does a **named editor's** perspective make this more valuable than a publication-wide answer?",
       },
     ],
     notes: [
@@ -240,7 +240,7 @@ export const slides: Slide[] = [
       "Audio follows existing precedent: Audio Briefings use invented AI voices; journalists' cloned voices are only used to translate their own words, with consent. Never the editor's voice saying new sentences. Plus his real recorded clips from Insider and podcasts.",
       "Video: weakest evidence (most opposed format, costly, live Insider dropped). So show testers a mock-up clip in research sessions: cheap, and it gives us subscribers' reaction rather than general-public surveys.",
       "Personas: no; we surface dissent we've actually published. Group debates: compare what editors have published. Adapting to expertise changes depth, not position, and comes later.",
-      "The human loop: the most-asked questions go to editors; their real answers join the bank. Scale the editors, don't simulate them.",
+      "Learning loop: questions the archive can't answer are grouped by theme. Editors see what readers most want explained and choose what, if anything, to answer (Insider, newsletters, future pieces). No promise of a reply to any single reader. A hypothesis to test: is the signal useful to editors?",
     ],
   },
 
@@ -250,7 +250,7 @@ export const slides: Slide[] = [
     layout: "trust",
     kicker: "Editorial risk",
     title: "Keeping it trustworthy: a starting proposal",
-    standfirst: "Suggested safeguards to agree with editors. The rules are theirs to set; the Lab builds them in.",
+    standfirst: "Suggested safeguards, to agree with editors.",
     tiers: [
       { label: "The Economist's position", who: "Institutional, unsigned", rule: "Summarise and cite" },
       { label: "An editor's published view", who: "Attributable, dated", rule: "Quote verbatim, with consent" },
@@ -258,12 +258,10 @@ export const slides: Slide[] = [
     ],
     principles: [
       { title: "Third person", text: "Never “I think”" },
-      { title: "Quote", text: "Claim-level citation checks" },
-      { title: "Tag", text: "Fact, analysis or opinion" },
-      { title: "Date", text: "Show when a view changed" },
+      { title: "Quote", text: "With citation checks" },
+      { title: "Date", text: "Sources are dated; changes of view highlighted" },
       { title: "Refuse", text: "“We haven't covered that”" },
-      { title: "Consent", text: "Editors opt in" },
-      { title: "Red-team", text: "Before every release" },
+      { title: "Stress-test", text: "Try hard to break it before every release" },
     ],
     principle: "Editors decide the final rules and sign off.",
     notes: [
@@ -279,46 +277,45 @@ export const slides: Slide[] = [
     layout: "plan",
     kicker: "Validation",
     title: "How we'd find out, and what success looks like",
-    standfirst: "Fast, overlapping steps, each ending in a decision. Beyond the pilot, we'd track retention, cost per answer, editor time, and whether readers still go on to the journalism.",
+    standfirst: "Overlapping steps, each ending in a decision. Later measures: retention, cost per answer, editor time.",
     phases: [
       {
         weeks: "Weeks 1–3",
         span: 3,
-        title: "Discover and sketch",
+        title: "Discovery",
         activities: [
-          "Deep dive into existing tech and tools first",
-          "What can we attribute to an editor, and when?",
+          "Review existing tech and tools",
+          "What can we attribute to an editor?",
           "What do subscribers ask?",
-          "Find an editor who wants in",
-          "Then a rough prototype",
+          "Prototype",
         ],
         metrics: [],
-        gate: "We know what an editor's work is and what we're allowed to attribute to them, and an editor commits to the pilot",
+        gate: "The basics work and we know what we can attribute to an editor",
       },
       {
-        weeks: "Weeks 3–7",
+        weeks: "Weeks 3–6",
         span: 4,
         title: "Make it trustworthy",
-        activities: ["One editor, text only", "Build the test set with them", "Try hard to break it"],
+        activities: ["One editor, text only", "Agree test questions and model answers with the editor, drawn from their published work", "Try to break it"],
         metrics: [],
-        gate: "Answers pass the editor's test set, and they'd put their name to it",
+        gate: "The editor would put their name to it",
       },
       {
         weeks: "Weeks 6–12",
         span: 5,
         title: "Find out if it's valued",
-        activities: ["Staff, then testers, then a small A/B test", "Named editor vs publication-wide answer", "Show testers a mock video clip"],
+        activities: ["Test internally, then with testing groups, then a small A/B test", "Compare the editor-led experience with a publication-wide version, side by side with testers", "Audio prototype", "Then a mock video clip"],
         metrics: [],
-        gate: "Testers prefer the named editor, come back, and still go on to read the journalism",
+        gate: "Positive user metrics",
       },
     ],
-    team: ["Lab product, design and tech leads", "AI engineers", "Lab editors ×2", "The featured editor", "Data and research (shared)"],
     decisions: {
-      invest: "More editors; audio within existing rules; video only if testers want it",
-      pivot: "Publication-wide answers, plus editors' recorded answers",
-      stop: "We can't make it trustworthy, or readers don't value it",
+      invest: "More editors, then audio; video if testers want it",
+      pivot: "Publication-wide answers only",
+      stop: "Not trustworthy, or not valued",
     },
     notes: [
+      "One way to isolate the effect of the name: identical answers, one credited to the editor, one to The Economist. A true A/B test needs pilot-scale numbers; in weeks 6–12, side-by-side tests and interviews are more realistic.",
       "Each step: a hypothesis, the smallest test that could disprove it, a measure agreed in advance, then go, change course or stop.",
       "Overlapping, not sequential: the deep dive comes first, then a rough prototype follows quickly, with AI-assisted building, while discovery continues.",
       "Trust before demand: if the editor won't put their name to it, nothing else matters.",
@@ -335,43 +332,38 @@ export const slides: Slide[] = [
     layout: "architecture",
     kicker: "Technology",
     title: "From concept to working feature",
-    standfirst: "Begin with what already exists, rather than assumptions about the current technology.",
+    standfirst: "Build on The Economist's existing technology.",
     layers: [
       {
-        label: "Week 1",
         name: "Review what exists",
-        detail: "Content data, transcripts, the existing Q&A prototype, evaluation tools, model access and infrastructure",
+        detail: "The Economist tech stack. Content data, transcripts, the existing Q&A prototype, evaluation tools, models and infrastructure",
       },
       {
-        label: "Weeks 2–4",
-        name: "Build a working prototype",
-        detail: "One editor, text only, from question to answer, using off-the-shelf tools",
+        name: "Build a prototype",
+        detail: "One editor, text only, using off-the-shelf tools for speed. Track cost per answer from the start",
       },
       {
-        label: "Before any reader sees it",
         name: "Test quality first",
-        detail: "A test set and scoring agreed with the editor",
+        detail: "Test questions and model answers agreed with the editor, before any reader sees it",
       },
       {
-        label: "Pilot",
-        name: "Prepare for a pilot",
-        detail: "Connect to the live platform and subscriber logins; add monitoring and error handling; set targets for response time and cost per answer; load-test",
+        name: "Prepare for testers and a pilot",
+        detail: "Live platform, subscriber logins, monitoring, response-time targets",
       },
       {
-        label: "If the pilot succeeds",
         name: "Launch",
-        detail: "Roll out more widely, then add the next format",
+        detail: "If the pilot succeeds: roll out, then add audio and video on the same foundations",
       },
     ],
     columns: [
-      { title: "Every answer shows its sources", items: ["Source, author and date travel with each passage, from search to screen"] },
-      { title: "Checking is a separate step", items: ["Claims are checked against sources separately from the step that writes the answer"] },
-      { title: "Every model is interchangeable", items: ["Language, checking, speech and video models sit behind one interface, so any can be swapped as cost and quality change"] },
-      { title: "Fast, but nothing unchecked", items: ["Answers appear as they're written; unchecked claims are held back"] },
-      { title: "Every answer can be traced", items: ["We can see what was retrieved, and why it answered as it did"] },
+      { title: "Every answer shows its sources", items: ["Readers can see who wrote it, where and when"] },
+      { title: "Checking is a separate step", items: ["As with Audio Briefings, a separate AI checks each claim against the source article before the reader sees it"] },
+      { title: "Every model is interchangeable", items: ["Language, checking, speech and video models can each be swapped"] },
+      { title: "Fast, but nothing unchecked", items: ["Answers stream quickly; unchecked claims are held back"] },
+      { title: "Every answer can be traced", items: ["We can see what was retrieved, and why for evaluation"] },
     ],
     footnote:
-      "Possible tools for later formats: ElevenLabs (audio), HeyGen or Synthesia (a video test), Whisper (voice input). Final choices depend on the week-1 review.",
+      "Possible tools for later formats: ElevenLabs (audio), HeyGen or Synthesia (a video test), Whisper (voice input). Final choices depend on the initial review.",
     notes: [
       "The week-1 review is the serious scoping exercise: it turns assumptions into requirements.",
       "The prototype may be thrown away or kept, depending on what the review finds.",
@@ -390,32 +382,30 @@ export const slides: Slide[] = [
     layout: "columns",
     kicker: "Agents",
     title: "If readers arrive through AI agents, attribution matters more",
-    standfirst: "More readers may meet The Economist inside an assistant rather than on our site.",
+    standfirst: "More readers may meet The Economist inside an AI assistant rather than on its site.",
     columns: [
       {
         title: "What changes",
         items: [
-          "Fewer visits: search referrals are down by a third",
-          "AI answers rarely send readers on: 4% click through, against 19% from search",
+          "AI answers rarely send readers on: only 4% of people often click through to the source, against 19% when using search¹",
         ],
       },
       {
         title: "What becomes more valuable",
         items: [
-          "Agents can summarise the news from anywhere. Paywalled analysis, attributed to a named editor and dated, they can't",
-          "A subscriber's own agent can use what they already pay for",
+          "Agents can summarise the news from anywhere. They can't offer paywalled analysis attributed to a named editor",
+          "Subscribers could connect their own AI assistant to their Economist subscription",
         ],
       },
       {
         title: "What I'd do",
         items: [
-          "Build the core so the same sourced answers can reach agents: through MCP, the agent-readable formats you already publish, or the enterprise API",
+          "Build so the same cited answers can reach agents (MCP, agent-readable formats, enterprise API)",
           "Start small, as with the Graphs ChatGPT app, and measure attribution and click-back",
-          "Stronger bundled into a broader conversational journalism tool than offered to agents on its own",
         ],
       },
     ],
-    footnote: "How far to go with agents is a strategy decision for the Lab. This feature just needs to be ready.",
+    footnote: "¹ [Reuters Institute, Digital News Report 2026: AI chatbots for news](https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/emerging-uses-ai-chatbots-news-and-what-it-means-journalism). 27 markets, self-reported.",
     notes: [
       "The brief imagines editors talking to subscribers' agents. Our version: a subscriber's agent can ask The Economist, and gets sourced, attributed answers.",
       "Search referrals: Google organic traffic to 2,500+ sites down 33% globally, Nov 2024–Nov 2025 (Chartbeat, via Reuters Institute Trends 2026).",
@@ -435,7 +425,7 @@ export const slides: Slide[] = [
       {
         title: "What I'd build first",
         items: [
-          "A text conversation with one editor's published analysis, building on the Lab's existing Q&A work",
+          "A text conversation with one editor's published analysis, building on the Lab's existing work",
           "Answers that quote the editor, show sources and dates, and never speak as the editor",
         ],
       },
@@ -443,24 +433,24 @@ export const slides: Slide[] = [
         title: "What I'd test first",
         numbered: true,
         items: [
-          "Can we reliably tell who wrote what, and when?",
+          "What can we attribute to an editor?",
           "Do answers stay faithful to what the editor actually wrote?",
-          "Do readers value the named editor more than a publication-wide answer?",
+          "Do readers value a named editor's perspective more than a publication-wide answer?",
         ],
       },
       {
         title: "What could follow, if the evidence supports it",
         items: [
-          "Audio, using a house voice or the editor's own published words",
+          "Audio, using a house voice",
           "Part of a broader conversational journalism tool",
-          "Access for subscribers' own AI agents",
+          "Access for subscribers' own AI agents - potential for MCP integration",
           "Video, only if testers respond well to it",
         ],
       },
     ],
     footnote: "What I'd avoid: synthetic editors giving new opinions, and personas that tilt The Economist's position.",
     notes: [
-      "Standalone or bundled? The test of named editor vs publication-wide answer tells us whether the editor view is a product in its own right or a mode within a broader conversational journalism tool.",
+      "Standalone or bundled? The test of the same answers credited to the editor or to The Economist tells us whether the editor view is a product in its own right or a mode within a broader conversational journalism tool.",
       "Close on the principle: the editor stays the author.",
       "Thank you. Questions.",
     ],
@@ -479,9 +469,115 @@ export const slides: Slide[] = [
 
   // ═══ APPENDIX ═══════════════════════════════════════════════════════════════
 
+  // A6 ────────────────────────────────────────────────────────────────────────
+  {
+    id: "appendix-ai-examples",
+    layout: "excerpts",
+    appendix: true,
+    kicker: "Appendix · How I used AI",
+    title: "Examples from the transcripts",
+    excerpts: [
+      {
+        tool: "Claude",
+        context: "Setting up the working method, 8 Nov",
+        prompt:
+          "I intend to take this approach. UNDERSTANDING AND THINKING… RESEARCH… ANSWERS… CROSS CHECK… BUILD PRESENTATION. Do not jump ahead - we will take these steps in order, one at a time. Please be direct and challenge areas where our thinking or arguments are weak. Help to separate assumptions from evidence. Don't just agree with me. I will use ChatGPT as a secondary opinion to review and challenge the work.",
+        outcome:
+          "A staged process I controlled: understand, research, form a position, cross-check, then build. Claude was asked to challenge, not agree; ChatGPT reviewed the result independently.",
+      },
+      {
+        tool: "Gemini",
+        context: "Research: scanning a long industry report",
+        prompt: "summarise this please [Reuters Institute, Journalism, Media, and Technology Trends and Predictions 2026]",
+        outcome:
+          "A quick first pass on a long report about how generative AI and platforms are reshaping news. Useful for orientation; figures were checked against the source before use.",
+      },
+      {
+        tool: "Claude Code",
+        context: "Building this presentation",
+        prompt:
+          "I want a simple website which works like a presentation… it should work like keynote. And it should use the Economist style guide. All slide content should be easy to edit in one clearly organised source file… Do not invent data, internal Economist capabilities or research findings. Use placeholders where exact source details or internal information need confirmation. Avoid overclaiming…",
+        outcome:
+          "A working deck in one session, using the Economist design system's published colours and type. Guardrails in the brief kept unverified claims as visible placeholders until I'd checked them. The words are mine.",
+      },
+      {
+        tool: "ChatGPT",
+        context: "Independent review of the deck",
+        prompt:
+          "Review the user's local presentation… Inspect the actual slides and give concise, candid feedback on narrative, originality, product judgment, technical credibility, and fit with The Economist Head of Product and Engineering AI Lab case brief. Do not edit unless asked.",
+        outcome:
+          "A second opinion from a different model. I took its push to make the answer slide a concrete reader journey; I kept my narrative order, adding a signpost rather than moving the answer earlier. Earlier, its review of my research led me to soften four evidence ratings.",
+      },
+    ],
+    footnote: "",
+    notes: [
+      "Have the full transcripts open in browser tabs, ready to show.",
+      "The ChatGPT example is the strongest: it shows AI used to challenge my own conclusions, not just to produce them.",
+      "[Choose excerpts that show a question I asked, a pushback I gave, or a decision I made differently from the AI's suggestion.]",
+    ],
+  },
+
+  // A5 ────────────────────────────────────────────────────────────────────────
+  {
+    id: "appendix-ai-use",
+    layout: "tools",
+    appendix: true,
+    kicker: "Appendix · How I used AI",
+    title: "Different tools for different jobs",
+    standfirst: "AI gave me breadth and speed. The judgement and the positions are mine.",
+    tools: [
+      {
+        name: "Gemini",
+        role: "Research and questions",
+        uses: ["Finding and summarising external sources", "Answering factual questions as they came up"],
+      },
+      {
+        name: "ChatGPT",
+        role: "Freeform, open thinking",
+        uses: [
+          "Thinking out loud before committing to a position",
+          "Challenging my research synthesis: its review led me to soften four ratings",
+        ],
+      },
+      {
+        name: "Claude",
+        role: "Structured preparation",
+        uses: [
+          "Staging the work: research, then synthesis, then answers",
+          "Research questions, evidence log and assumptions log",
+        ],
+      },
+      {
+        name: "Claude Code",
+        role: "Building this presentation",
+        uses: [
+          "A Keynote-style React deck, built from a written brief",
+          "The Economist design system's published colour and type tokens",
+          "All content in one file, easily editable by humans",
+        ],
+      },
+    ],
+    mine: {
+      title: "What stays mine",
+      items: [
+        "The recommendation and the positions behind it",
+        "Which evidence to trust, and how much",
+        "Checking sources before they're cited",
+        "The final wording on every slide",
+      ],
+    },
+    notes: [
+      "The brief encourages AI use that showcases original thinking. This is how I split the work.",
+      "Using one model to challenge another's output was the most useful habit: the ChatGPT review made the synthesis more honest.",
+      "Claude Code built the deck itself. That's the same build-fast, judge-carefully approach I'd bring to the Lab.",
+      "Transcripts are ready to share (next slide).",
+    ],
+  },
+
   // Attribution modes (moved from main deck) ───────────────────────────────────
   {
     id: "appendix-attribution",
+    hidden: true,
     layout: "columns",
     appendix: true,
     kicker: "Appendix · Attribution",
@@ -500,6 +596,7 @@ export const slides: Slide[] = [
   // A1 ────────────────────────────────────────────────────────────────────────
   {
     id: "appendix-synthesis",
+    hidden: true,
     layout: "synthesis",
     appendix: true,
     kicker: "Appendix · Research synthesis",
@@ -532,6 +629,7 @@ export const slides: Slide[] = [
   // A2 ────────────────────────────────────────────────────────────────────────
   {
     id: "appendix-scorecard-value",
+    hidden: true,
     layout: "scorecard",
     appendix: true,
     kicker: "Appendix · Hypothesis scorecard",
@@ -605,6 +703,7 @@ export const slides: Slide[] = [
   // A3 ────────────────────────────────────────────────────────────────────────
   {
     id: "appendix-scorecard-feasibility",
+    hidden: true,
     layout: "scorecard",
     appendix: true,
     kicker: "Appendix · Hypothesis scorecard",
@@ -713,6 +812,7 @@ export const slides: Slide[] = [
   // A4 ────────────────────────────────────────────────────────────────────────
   {
     id: "appendix-open",
+    hidden: true,
     layout: "columns",
     appendix: true,
     kicker: "Appendix · Open questions",
@@ -756,110 +856,11 @@ export const slides: Slide[] = [
     ],
   },
 
-  // A5 ────────────────────────────────────────────────────────────────────────
-  {
-    id: "appendix-ai-use",
-    layout: "tools",
-    appendix: true,
-    kicker: "Appendix · How I used AI",
-    title: "Different tools for different jobs",
-    standfirst: "AI gave me breadth and speed. The judgement and the positions are mine.",
-    tools: [
-      {
-        name: "Gemini",
-        role: "Research and questions",
-        uses: ["Finding and summarising external sources", "Answering factual questions as they came up"],
-      },
-      {
-        name: "ChatGPT",
-        role: "Freeform, open thinking",
-        uses: [
-          "Thinking out loud before committing to a position",
-          "Challenging my research synthesis: its review led me to soften four ratings",
-        ],
-      },
-      {
-        name: "Claude",
-        role: "Structured preparation",
-        uses: [
-          "Staging the work: research, then synthesis, then answers",
-          "Research questions, evidence log and assumptions log",
-          "The hypothesis scorecard (A2–A3)",
-        ],
-      },
-      {
-        name: "Claude Code",
-        role: "Building this presentation",
-        uses: [
-          "A Keynote-style React deck, built from a written brief",
-          "The Economist design system's published colour and type tokens",
-          "All content in one editable file, so the words stay mine",
-        ],
-      },
-    ],
-    mine: {
-      title: "What stays mine",
-      items: [
-        "The recommendation and the positions behind it",
-        "Which evidence to trust, and how much",
-        "Checking sources before they're cited",
-        "The final wording on every slide",
-      ],
-    },
-    notes: [
-      "The brief encourages AI use that showcases original thinking. This is how I split the work.",
-      "Using one model to challenge another's output was the most useful habit: the ChatGPT review made the synthesis more honest.",
-      "Claude Code built the deck itself. That's the same build-fast, judge-carefully approach I'd bring to the Lab.",
-      "Transcripts are ready to share (next slide).",
-    ],
-  },
 
-  // A6 ────────────────────────────────────────────────────────────────────────
-  {
-    id: "appendix-ai-examples",
-    layout: "excerpts",
-    appendix: true,
-    kicker: "Appendix · How I used AI",
-    title: "Examples from the transcripts",
-    excerpts: [
-      {
-        tool: "Claude Code",
-        context: "Starting this presentation",
-        prompt:
-          "I want a simple website which works like a presentation. It must be able to go fullscreen and I need to be able to click through - it should work like keynote. And it should use the Economist style guide.",
-        outcome:
-          "A working deck in one session, with colours and type taken from the Economist design system's published stylesheet. I then edited the content.",
-      },
-      {
-        tool: "ChatGPT",
-        context: "Reviewing the research synthesis, 9 Nov",
-        prompt: "[Paste excerpt from the review conversation]",
-        outcome:
-          "Four ratings softened: conversation became “promising, unvalidated”; synthetic editors “high-risk, not disproven”; legal “unresolved”; the problem made channel-agnostic.",
-      },
-      {
-        tool: "Gemini",
-        context: "[Research question]",
-        prompt: "[Paste excerpt]",
-        outcome: "[What it found, and what I did with it]",
-      },
-      {
-        tool: "Claude",
-        context: "Shaping the concept, 9 Nov",
-        prompt:
-          "One thing to consider with editors - is it better to editorially deliver the info to users in a different way, ie \"Henry Curr said X\" or \"Henry Curr has covered this here and here\" etc rather than pretending to be Henry Curr",
-        outcome:
-          "My pushback became the core design choice: third-person attribution (curate, report) instead of impersonation. I also rejected personas and reframed Claude's \"views with receipts\" idea into the editor lens.",
-      },
-    ],
-    footnote: "Excerpts lightly trimmed. Full transcripts available on request.",
-    notes: [
-      "Have the full transcripts open in browser tabs, ready to show.",
-      "The ChatGPT example is the strongest: it shows AI used to challenge my own conclusions, not just to produce them.",
-      "[Choose excerpts that show a question I asked, a pushback I gave, or a decision I made differently from the AI's suggestion.]",
-    ],
-  },
 ];
+
+/** The deck as presented: hidden slides are left out. */
+export const slides: Slide[] = allSlides.filter((s) => !s.hidden);
 
 /** Number of main-deck slides (appendix excluded). */
 export const mainCount = slides.filter((s) => !s.appendix).length;
