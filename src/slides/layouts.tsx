@@ -352,11 +352,19 @@ function Architecture({ s, ...pos }: { s: ArchitectureSlide } & Pos) {
           {s.layers.map((l, i) => (
             <div key={l.name} className="flex items-stretch flex-1">
               <div className="flex-1 bg-london-100 border border-london-85 px-5 py-5 flex flex-col">
-                <span
-                  className={`self-start text-[15px] font-semibold uppercase tracking-[0.08em] px-2 py-[2px] ${decisionStyles[l.decision]}`}
-                >
-                  {l.decision}
-                </span>
+                {l.decision ? (
+                  <span
+                    className={`self-start text-[15px] font-semibold uppercase tracking-[0.08em] px-2 py-[2px] ${decisionStyles[l.decision]}`}
+                  >
+                    {l.decision}
+                  </span>
+                ) : (
+                  l.label && (
+                    <span className="self-start text-[15px] font-semibold uppercase tracking-[0.08em] text-chicago-30">
+                      {l.label}
+                    </span>
+                  )
+                )}
                 <p className="font-serif text-[27px] leading-[1.15] text-london-5 mt-3">{l.name}</p>
                 <p className="text-[18px] leading-[1.4] text-london-35 mt-2">
                   <Rich text={l.detail} />
@@ -369,7 +377,7 @@ function Architecture({ s, ...pos }: { s: ArchitectureSlide } & Pos) {
           ))}
         </div>
 
-        <div className="grid grid-cols-4 gap-[40px] mt-[44px]">
+        <div className="grid gap-[40px] mt-[44px]" style={{ gridTemplateColumns: `repeat(${s.columns.length}, minmax(0, 1fr))` }}>
           {s.columns.map((c) => (
             <Section key={c.title} title={c.title}>
               <ul className="space-y-3">
@@ -625,7 +633,8 @@ function Scorecard({ s, ...pos }: { s: ScorecardSlide } & Pos) {
 function Columns({ s, ...pos }: { s: ColumnsSlide } & Pos) {
   return (
     <Frame {...pos} {...s}>
-      <div className="grid gap-[48px] h-full" style={{ gridTemplateColumns: `repeat(${s.columns.length}, 1fr)` }}>
+      <div className="flex flex-col h-full">
+      <div className="grid gap-[48px]" style={{ gridTemplateColumns: `repeat(${s.columns.length}, 1fr)` }}>
         {s.columns.map((c) => (
           <Section key={c.title} title={c.title}>
             <ul className="space-y-6">
@@ -644,6 +653,12 @@ function Columns({ s, ...pos }: { s: ColumnsSlide } & Pos) {
             </ul>
           </Section>
         ))}
+      </div>
+      {s.footnote && (
+        <p className="mt-auto text-[18px] italic text-london-35">
+          <Rich text={s.footnote} />
+        </p>
+      )}
       </div>
     </Frame>
   );

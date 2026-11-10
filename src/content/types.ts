@@ -80,7 +80,7 @@ export interface TrustSlide extends Base {
 
 export interface ArchitectureSlide extends Base {
   layout: "architecture";
-  layers: { name: string; detail: string; decision: "Build" | "Buy" | "Integrate" }[];
+  layers: { name: string; detail: string; decision?: "Build" | "Buy" | "Integrate"; label?: string }[];
   columns: { title: string; items: string[] }[];
   footnote: string;
 }

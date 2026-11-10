@@ -189,7 +189,7 @@ export const slides: Slide[] = [
     layout: "journey",
     kicker: "My answer",
     title: "Meet the Editors: start with a text conversation",
-    standfirst: "Explore an editor's published analysis, ask follow-up questions and trace every answer to its source.",
+    standfirst: "Explore an editor's published analysis, ask follow-up questions and trace every answer to its source. It can stand alone or become one mode of a broader conversational journalism tool.",
     status: "recommendation",
     journeyLabel: "One journey",
     journey: [
@@ -218,6 +218,7 @@ export const slides: Slide[] = [
     ],
     notes: [
       "This is the concept, narrowed: a real conversation with an editor's published analysis.",
+      "Not a new product: a new scope on the Lab's Q&A work. One editor's published analysis, rather than one article. It can launch on its own (Siegele, 2024: 'perhaps more narrow chatbots') or sit inside any broader Q&A as a mode.",
       "More than search: it shows how his reasoning developed over time, in his own words, not a list of links.",
       "Third person only. 'Henry argued', never 'I think'. If it can't support a claim, it says we haven't covered that.",
       "Voice and video aren't the problem. Synthetic editors are.",
@@ -241,6 +242,7 @@ export const slides: Slide[] = [
         span: 3,
         title: "Discover and sketch",
         activities: [
+          "Quick deep dive into existing tech and tools",
           "A rough prototype in week one",
           "Can we tell who wrote what, and when?",
           "What do subscribers ask?",
@@ -283,53 +285,99 @@ export const slides: Slide[] = [
     ],
   },
 
-  // 8 ── How we'd build it ───────────────────────────────────────────────────
+  // 8 ── From concept to working feature ─────────────────────────────────────
   {
     id: "build",
     layout: "architecture",
     kicker: "Technology",
-    title: "How we'd build it",
-    standfirst: "Generation is a commodity. Attribution and verification are the hard part.",
+    title: "From concept to working feature",
+    standfirst: "Begin with what already exists, rather than assumptions about the current technology.",
     layers: [
-      { name: "Analyse & route", detail: "What kind of question? Whose lens?", decision: "Build" },
-      { name: "Look up", detail: "The editor's work, with author and date", decision: "Integrate" },
-      { name: "Answer", detail: "Quote-first, third person", decision: "Integrate" },
-      { name: "Validate", detail: "Check every claim; fall back to links", decision: "Build" },
-      { name: "Render", detail: "Text first; voice later", decision: "Buy" },
-      { name: "Evaluate", detail: "Scored with editors", decision: "Build" },
+      {
+        label: "Week 1",
+        name: "Review what exists",
+        detail: "Content data, transcripts, the existing Q&A prototype, evaluation tools, model access and infrastructure",
+      },
+      {
+        label: "Weeks 1–3",
+        name: "Build a working prototype",
+        detail: "One editor, text only, from question to answer, using off-the-shelf tools",
+      },
+      {
+        label: "Before any reader sees it",
+        name: "Test quality first",
+        detail: "A test set and scoring agreed with the editor",
+      },
+      {
+        label: "Pilot",
+        name: "Prepare for a pilot",
+        detail: "Connect to the live platform and subscriber logins; add monitoring and error handling; set targets for response time and cost per answer; load-test",
+      },
+      {
+        label: "If the pilot succeeds",
+        name: "Launch",
+        detail: "Roll out more widely, then add the next format",
+      },
     ],
     columns: [
-      { title: "Buy", items: ["Models", "Voice and video", "Observability"] },
-      { title: "Build", items: ["Attribution", "Verification", "Editorial evals"] },
-      { title: "Reuse the Lab's work", items: ["Audio Briefings pipeline", "Article Q&A prototype", "House-voice fine-tuning"] },
+      { title: "Every answer shows its sources", items: ["Source, author and date travel with each passage, from search to screen"] },
+      { title: "Checking is a separate step", items: ["Claims are checked against sources separately from the step that writes the answer"] },
+      { title: "Every model is interchangeable", items: ["Language, checking, speech and video models sit behind one interface, so any can be swapped as cost and quality change"] },
+      { title: "Fast, but nothing unchecked", items: ["Answers appear as they're written; unchecked claims are held back"] },
+      { title: "Every answer can be traced", items: ["We can see what was retrieved, and why it answered as it did"] },
     ],
-    footnote: "Assumes nothing about the current stack. Vendor choices follow an audit.",
+    footnote:
+      "Possible tools for later formats: ElevenLabs (audio), HeyGen or Synthesia (a video test), Whisper (voice input). Final choices depend on the week-1 review.",
     notes: [
-      "First question is the corpus, not the model: most articles are unsigned.",
-      "In real time there's no human edit per answer, so validation is automated. If it fails, regenerate once, then fall back to links.",
-      "Off-the-shelf to learn; review open source for production cost.",
+      "The week-1 review is the serious scoping exercise: it turns assumptions into requirements.",
+      "The prototype may be thrown away or kept, depending on what the review finds.",
+      "The five design principles hold whatever the current technology is.",
+      "Streamed but safe: speed matters for conversation, but nothing unverified reaches the screen. If checks fail, regenerate once, then fall back to links.",
+      "Hard parts: attributing views to a person (most articles are unsigned), checking claims fast enough to converse, knowing when a view changed.",
+      "Reuse the Lab's work: Audio Briefings pipeline, the article Q&A prototype, house-voice fine-tuning.",
+      "Voice input (speech to text) is commodity and useful, e.g. in CarPlay, but it's a separate question from voice output. Later.",
       "My background: gen-AI audio pipelines with script generation, fact-checking and ElevenLabs. Close to Audio Briefings.",
     ],
   },
 
-  // 9 ── Beyond the app ──────────────────────────────────────────────────────
+  // 9 ── Agents ──────────────────────────────────────────────────────────────
   {
     id: "agents",
-    layout: "closing",
+    layout: "columns",
     kicker: "Agents",
-    title: "Beyond the app",
-    standfirst: "Readers increasingly arrive through AI agents. The same core can serve them.",
-    opportunities: [
-      { title: "Our app and site", items: ["The full experience", "The subscriber relationship"] },
-      { title: "Readers' own agents", items: ["Through MCP, entitled by subscription", "Cited answers that link back"] },
+    title: "If readers arrive through AI agents, attribution matters more",
+    standfirst: "More readers may meet The Economist inside an assistant rather than on our site.",
+    columns: [
+      {
+        title: "What changes",
+        items: [
+          "Fewer visits: search referrals are down by a third",
+          "AI answers rarely send readers on: 4% click through, against 19% from search",
+        ],
+      },
+      {
+        title: "What becomes more valuable",
+        items: [
+          "Agents can summarise the news from anywhere. Paywalled analysis, attributed to a named editor and dated, they can't",
+          "A subscriber's own agent can use what they already pay for",
+        ],
+      },
+      {
+        title: "What I'd do",
+        items: [
+          "Build the core so the same sourced answers can reach agents: through MCP, the agent-readable formats you already publish, or the enterprise API",
+          "Start small, as with the Graphs ChatGPT app, and measure attribution and click-back",
+          "Stronger bundled into a broader conversational journalism tool than offered to agents on its own",
+        ],
+      },
     ],
-    foundation: { title: "One core", items: ["Retrieval", "Attribution", "Checks", "Entitlements"] },
-    principle: "Attribution keeps The Economist visible inside someone else's interface.",
-    caveat: "How far to go with agents is a strategy call. This just needs to be ready.",
+    footnote: "How far to go with agents is a strategy decision for the Lab. This feature just needs to be ready.",
     notes: [
-      "Search referrals are falling; agent traffic is replacing human traffic.",
-      "The Economist already experiments: the Graphs ChatGPT app. [How did it do?]",
-      "Platforms are immature, so keep bets small and reversible.",
+      "The brief imagines editors talking to subscribers' agents. Our version: a subscriber's agent can ask The Economist, and gets sourced, attributed answers.",
+      "Search referrals: Google organic traffic to 2,500+ sites down 33% globally, Nov 2024–Nov 2025 (Chartbeat, via Reuters Institute Trends 2026).",
+      "Click-through: Reuters Institute Digital News Report 2026, 27 markets, self-reported.",
+      "The Economist already has a controlled presence: crawlers blocked, the Graphs ChatGPT app built on MCP, pre-paywall only. [How did it perform? Ask.]",
+      "Reuters has a subscriber-entitled MCP server. Agent platforms are still immature, so keep bets small and reversible.",
     ],
   },
 
@@ -338,13 +386,40 @@ export const slides: Slide[] = [
     id: "close",
     layout: "columns",
     kicker: "Recommendation",
-    title: "Start with the lens. Let evidence decide the rest",
+    title: "Start with one editor, in text, and let the evidence decide what comes next",
     columns: [
-      { title: "Build", items: ["Ask The Economist, with an editor lens", "Editors quoted, never imitated"] },
-      { title: "Test first", numbered: true, items: ["Is the corpus attributable?", "Can we stay faithful?", "Do readers value it?"] },
-      { title: "Then, if it earns it", items: ["Audio, within existing rules", "Agents", "Video, only if testers want it"] },
+      {
+        title: "What I'd build first",
+        items: [
+          "A text conversation with one editor's published analysis, building on the Lab's existing Q&A work",
+          "Answers that quote the editor, show sources and dates, and never speak as the editor",
+        ],
+      },
+      {
+        title: "What I'd test first",
+        numbered: true,
+        items: [
+          "Can we reliably tell who wrote what, and when?",
+          "Do answers stay faithful to what the editor actually wrote?",
+          "Do readers value the named editor more than a publication-wide answer?",
+        ],
+      },
+      {
+        title: "What could follow, if the evidence supports it",
+        items: [
+          "Audio, using a house voice or the editor's own published words",
+          "Part of a broader conversational journalism tool",
+          "Access for subscribers' own AI agents",
+          "Video, only if testers respond well to it",
+        ],
+      },
     ],
-    notes: ["Thank you. Questions."],
+    footnote: "What I'd avoid: synthetic editors giving new opinions, and personas that tilt The Economist's position.",
+    notes: [
+      "Standalone or bundled? The test of named editor vs publication-wide answer tells us whether the editor view is a product in its own right or a mode within a broader conversational journalism tool.",
+      "Close on the principle: the editor stays the author.",
+      "Thank you. Questions.",
+    ],
   },
 
   // ═══ APPENDIX ═══════════════════════════════════════════════════════════════
