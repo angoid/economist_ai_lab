@@ -115,9 +115,20 @@ function Jobs({ s, ...pos }: { s: JobsSlide } & Pos) {
               </p>
             </div>
           ))}
-          <p className="col-span-2 text-[21px] text-london-35 italic self-end">
-            <Rich text={s.caveat} />
-          </p>
+          <div className="col-span-2 self-end">
+            <p className="text-[21px] text-london-35 italic">
+              <Rich text={s.caveat} />
+            </p>
+            {s.sources && (
+              <ol className="mt-3 text-[15px] text-london-35 leading-[1.5]">
+                {s.sources.map((src, i) => (
+                  <li key={i}>
+                    <span className="font-semibold">{i + 1}.</span> <Rich text={src} />
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
         </div>
 
         <aside className="bg-london-100 px-10 py-9 self-start">
@@ -172,10 +183,12 @@ function Evidence({ s, ...pos }: { s: EvidenceSlide } & Pos) {
                 </ul>
               )}
               <p className="text-[19px] font-semibold text-london-5 mt-4">{sig.source}</p>
-              <p className="text-[19px] leading-[1.4] text-tokyo-45 mt-2">
-                <span className="font-semibold">Caveat: </span>
-                <Rich text={sig.caveat} />
-              </p>
+              {sig.caveat && (
+                <p className="text-[19px] leading-[1.4] text-tokyo-45 mt-2">
+                  <span className="font-semibold">Caveat: </span>
+                  <Rich text={sig.caveat} />
+                </p>
+              )}
             </div>
           ))}
         </div>

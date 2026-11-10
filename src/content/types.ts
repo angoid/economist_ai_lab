@@ -37,6 +37,8 @@ export interface JobsSlide extends Base {
   jobs: { title: string; text: string }[];
   example: { label: string; title: string; steps: string[] };
   caveat: string;
+  /** Optional source list shown under the caveat. */
+  sources?: string[];
 }
 
 export interface EvidenceSlide extends Base {
