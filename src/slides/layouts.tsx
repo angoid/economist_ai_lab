@@ -442,7 +442,9 @@ function Plan({ s, ...pos }: { s: PlanSlide } & Pos) {
               </div>
               <div className="mt-auto pt-4 flex items-center gap-3 text-[20px] text-london-5 font-semibold">
                 <span className="w-[16px] h-[16px] rotate-45 bg-econ-red shrink-0" />
-                Gate: {p.gate}
+                <span>
+                  <span className="text-econ-red">Success:</span> {p.gate}
+                </span>
               </div>
             </div>
           ))}
